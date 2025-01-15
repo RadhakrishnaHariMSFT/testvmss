@@ -44,7 +44,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
 # Set up the HTTP server
 def run(server_class=HTTPServer, handler_class=RequestHandler):
-    server_address = ('localhost', 8000)
+    server_address = ('', 8000)
     httpd = server_class(server_address, handler_class)
     print('Starting server on port 8000...')
     httpd.serve_forever()
