@@ -1,5 +1,4 @@
 #!/bin/bash
-sleep 3m
 
 # Open firewall port (replace with your firewall rules as needed)
 sudo iptables -A INPUT -p tcp --dport 8000 -j ACCEPT
