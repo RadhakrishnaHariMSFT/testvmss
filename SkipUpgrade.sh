@@ -14,7 +14,7 @@ def generate_phase_order_response_json():
         "ApplicationHealthState": "Healthy",
         "CustomMetrics": json.dumps({
             "RollingUpgrade": {
-                "PhaseOrderingNumber": 0
+                "PhaseOrderingNumber": 0,
                 "SkipUpgrade": "false"
             }
         })
