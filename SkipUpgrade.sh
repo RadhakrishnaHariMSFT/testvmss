@@ -11,25 +11,26 @@ import json
 import os.path
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-def generate_phaseorder_response_json():
+def generate_phase_order_response_json():
     return json.dumps({
         "ApplicationHealthState": "Healthy",
-        "CustomMetrics": {
+        "CustomMetrics": json.dumps({
             "RollingUpgrade": {
                 "PhaseOrderingNumber": 0
+                "SkipUpgrade": "false"
             }
-        }
+        })
     })
 
 # Function to generate the JSON response
-def generate_skipupgrade_response_json():
+def generate_skip_upgrade_response_json():
     return json.dumps({
         "ApplicationHealthState": "Healthy",
-        "CustomMetrics": {
+        "CustomMetrics": json.dumps({
             "RollingUpgrade": {
                 "SkipUpgrade": "true"
             }
-        }
+        })
     })
 
 class RequestHandler(BaseHTTPRequestHandler):
@@ -39,9 +40,9 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'application/json')
         self.end_headers()
         if os.path.isfile("/tmp/primary"):
-            response = generate_skipupgrade_response_json()
+            response = generate_skip_upgrade_response_json()
         else:
-            response = generate_phaseorder_response_json()
+            response = generate_phase_order_response_json()
         self.wfile.write(response.encode('utf-8'))
 
 # Set up the HTTP server
