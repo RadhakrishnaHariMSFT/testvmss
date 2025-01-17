@@ -54,7 +54,10 @@ if __name__ == "__main__":
     run()
 EOF
 
-# Run the server in the background using nohup as this script will exit
+# The nohup command in Linux is used to run processes in such a way that they continue running even after the 
+# terminal session is closed. This is particularly useful for long-running processes or when working remotely over SSH, 
+# where you don't want the process to terminate if the connection drops
+# Run the server in the background using nohup as this bash script will exit
 nohup python3 server.py &
 
 # exit success code
