@@ -54,7 +54,8 @@ if __name__ == "__main__":
     run()
 EOF
 
-# Run the server
+# Run the server in the background using nohup as this script will exit
 nohup python3 server.py &
 
+# exit success code
 exit 0
