@@ -57,7 +57,7 @@ EOF
 # The nohup command in Linux is used to run processes in such a way that they continue running even after the 
 # terminal session is closed. This is particularly useful for long-running processes or when working remotely over SSH, 
 # where you don't want the process to terminate if the connection drops
-# Run the server in the background using nohup as this bash script will exit
+# Run the server in the background using nohup as this bash script will exit and we want the server to keep running after that
 nohup python3 server.py &
 
 # exit success code
