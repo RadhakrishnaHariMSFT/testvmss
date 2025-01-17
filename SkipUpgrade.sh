@@ -55,4 +55,6 @@ if __name__ == "__main__":
 EOF
 
 # Run the server
-python3 server.py
+nohup python3 server.py &
+
+exit 0
