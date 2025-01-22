@@ -4,7 +4,7 @@
 sudo iptables -A INPUT -p tcp --dport 8000 -j ACCEPT
 
 # Create Python HTTP server for responding with JSON
-cat <<EOF > server.py
+cat <<EOF > orionhealthextensionserver.py
 import json
 import os.path
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -54,11 +54,22 @@ if __name__ == "__main__":
     run()
 EOF
 
-# The nohup command in Linux is used to run processes in such a way that they continue running even after the 
-# terminal session is closed. This is particularly useful for long-running processes or when working remotely over SSH, 
-# where you don't want the process to terminate if the connection drops
-# Run the server in the background using nohup as this bash script will exit and we want the server to keep running after that
-nohup python3 server.py &
+cat << EOF > /etc/systemd/system/orionhealthextension.service
+[Unit]
+Description=Orion Health Extension Service
+
+[Service]
+ExecStart=nohup /usr/bin/python3 /var/lib/waagent/custom-script/download/0/orionhealthextensionserver.py
+Restart=always
+
+[Install]
+WantedBy=default.target
+
+EOF
+
+systemctl daemon-reload
+systemctl enable orionhealthextension.service
+systemctl start orionhealthextension.service
 
 # exit success code
 exit 0
