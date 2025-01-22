@@ -59,7 +59,7 @@ cat << EOF > /etc/systemd/system/orionhealthextension.service
 Description=Orion Health Extension Service
 
 [Service]
-ExecStart=nohup /usr/bin/python3 /var/lib/waagent/custom-script/download/0/orionhealthextensionserver.py
+ExecStart=/usr/bin/python3 /var/lib/waagent/custom-script/download/0/orionhealthextensionserver.py
 Restart=always
 
 [Install]
